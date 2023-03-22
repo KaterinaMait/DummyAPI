@@ -13,7 +13,8 @@ API-песочница данных для работы с реальными п
 В данной коллекции содержаться мои тесты для обектов Get List и Create Post, которые проверят возможность получения списка постов,списка постов на определенной странице и лимит на отображение количества постов.
 
 [Окружение](https://vk.com/doc27634094_656281496?hash=Y5MOWqLNWBwXyJ5jF16nqzINtuhd1z0DqROemZQAXCL&dl=R8BXheVN4quAM2UOEGzd351Yi7fl80mYASawqjbBbvs)
- [Коллекция](https://vk.com/doc27634094_656281495?hash=MlAp00zrCAQnFNKEi25Krp5jjR8opko0oMqA5oloCDP&dl=E08sifArjWUZwbRPfVKGjzLAnrsXZ5pTje5VxZGQc78)
+
+[Коллекция](https://vk.com/doc27634094_656281495?hash=MlAp00zrCAQnFNKEi25Krp5jjR8opko0oMqA5oloCDP&dl=E08sifArjWUZwbRPfVKGjzLAnrsXZ5pTje5VxZGQc78)
  
  # Автотесты
  Самое главное загружать по порядку.
