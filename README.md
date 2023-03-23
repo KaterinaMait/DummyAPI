@@ -17,6 +17,6 @@ API-песочница данных для работы с реальными п
 [Коллекция](https://vk.com/doc27634094_656281495?hash=MlAp00zrCAQnFNKEi25Krp5jjR8opko0oMqA5oloCDP&dl=E08sifArjWUZwbRPfVKGjzLAnrsXZ5pTje5VxZGQc78)
  
  # Автотесты
- Самое главное загружать по порядку.
+ Самое главное, загружать по порядку.
 
-[Автотесты](https://vk.com/doc27634094_656480243?hash=xJ4HwbIspTghtUJqT1UPnOnl9ZJ6RUXWUQgVJwooAxD&dl=rXJ6yIp4zsDDjSzCVllIV0MSan3unW7OmPGXP83yzd8)
+[Автотесты](https://github.com/KaterinaMait/DummyAPI/blob/main/Avtotest.postman_collection.json)
