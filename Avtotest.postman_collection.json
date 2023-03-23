@@ -1,0 +1,827 @@
+{
+	"info": {
+		"_postman_id": "6999c266-307c-43d7-8a09-fd4f59bebb10",
+		"name": "Avtomatization",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19129910"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "GetUserList",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 OK\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code is OK\", function () {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/user",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateUser",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name is OK\", function () {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.collectionVariables.set(\"userId\", jsonData.id);\r",
+									"\r",
+									"pm.test(\"Check body title\", function () {\r",
+									"    pm.expect(jsonData.title).to.eql(\"ms\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check body firstName\", function () {\r",
+									"    pm.expect(jsonData.firstName).to.eql(\"Hans\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check body lastName\", function () {\r",
+									"    pm.expect(jsonData.lastName).to.eql(\"Andersen\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check body picture\", function () {\r",
+									"    pm.expect(jsonData.picture).to.eql(\"https://randomuser.me/api/portraits/women/58.jpg\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check body gender\", function () {\r",
+									"    pm.expect(jsonData.gender).to.eql(\"female\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check body dateOfBirth\", function () {\r",
+									"    pm.expect(jsonData.dateOfBirth).to.eql(\"1996-04-30T19:26:49.610Z\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check body phone\", function () {\r",
+									"    pm.expect(jsonData.phone).to.eql(\"92694011\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check body location.street\", function () {\r",
+									"    pm.expect(jsonData.location.street).to.eql(\"9614, SÃ¸ndermarksvej\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check body location.city\", function () {\r",
+									"    pm.expect(jsonData.location.city).to.eql(\"Kongsvinger\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check body location.state\", function () {\r",
+									"    pm.expect(jsonData.location.state).to.eql(\"Nordjylland\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check body location.country\", function () {\r",
+									"    pm.expect(jsonData.location.country).to.eql(\"Denmark\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check body location.timezone\", function () {\r",
+									"    pm.expect(jsonData.location.timezone).to.eql(\"-9:00\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check body email is string\", function () {\r",
+									"    pm.expect(jsonData.email).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check body id is string\", function () {\r",
+									"    pm.expect(jsonData.id).to.be.a('string')\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check body registerDate is string\", function () {\r",
+									"    pm.expect(jsonData.registerDate).to.be.a('string')\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check body updatedDate is string\", function () {\r",
+									"    pm.expect(jsonData.updatedDate).to.be.a('string')\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"ms\",\r\n    \"firstName\": \"Hans\",\r\n    \"lastName\": \"Andersen\",\r\n    \"picture\": \"https://randomuser.me/api/portraits/women/58.jpg\",\r\n    \"gender\": \"female\",\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"dateOfBirth\": \"1996-04-30T19:26:49.610Z\",\r\n    \"phone\": \"92694011\",\r\n    \"location\": {\r\n         \"street\": \"9614, SÃ¸ndermarksvej\",\r\n        \"city\": \"Kongsvinger\",\r\n        \"state\": \"Nordjylland\",\r\n        \"country\": \"Denmark\",\r\n        \"timezone\": \"-9:00\"\r\n    },\r\n\t    \"registerDate\": \"2021-06-21T21:02:07.374Z\",\r\n    \"updatedDate\": \"2021-06-21T21:02:07.374Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/user/create",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"user",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateUser",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name is OK\", function () {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.collectionVariables.set(\"userId\", jsonData.id);\r",
+									"\r",
+									"pm.test(\"Check body title\", function () {\r",
+									"    pm.expect(jsonData.title).to.eql(\"ms\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check body firstName\", function () {\r",
+									"    pm.expect(jsonData.firstName).to.eql(\"Adelina\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check body lastName\", function () {\r",
+									"    pm.expect(jsonData.lastName).to.eql(\"Petrova\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check body picture\", function () {\r",
+									"    pm.expect(jsonData.picture).to.eql(\"https://randomuser.me/api/portraits/women/58.jpg\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check body gender\", function () {\r",
+									"    pm.expect(jsonData.gender).to.eql(\"female\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check body dateOfBirth\", function () {\r",
+									"    pm.expect(jsonData.dateOfBirth).to.eql(\"1996-04-30T19:26:49.610Z\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check body phone\", function () {\r",
+									"    pm.expect(jsonData.phone).to.eql(\"92694011\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check body location.street\", function () {\r",
+									"    pm.expect(jsonData.location.street).to.eql(\"9614, SÃ¸ndermarksvej\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check body location.city\", function () {\r",
+									"    pm.expect(jsonData.location.city).to.eql(\"Kongsvinger\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check body location.state\", function () {\r",
+									"    pm.expect(jsonData.location.state).to.eql(\"Nordjylland\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check body location.country\", function () {\r",
+									"    pm.expect(jsonData.location.country).to.eql(\"Denmark\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check body location.timezone\", function () {\r",
+									"    pm.expect(jsonData.location.timezone).to.eql(\"-9:00\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check body email is string\", function () {\r",
+									"    pm.expect(jsonData.email).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check body id is string\", function () {\r",
+									"    pm.expect(jsonData.id).to.be.a('string')\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check body registerDate is string\", function () {\r",
+									"    pm.expect(jsonData.registerDate).to.be.a('string')\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check body updatedDate is string\", function () {\r",
+									"    pm.expect(jsonData.updatedDate).to.be.a('string')\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"ms\",\r\n    \"firstName\": \"Adelina\",\r\n    \"lastName\": \"Petrova\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/user/640c3a705617347dac8664f9",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"user",
+								"640c3a705617347dac8664f9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteUser",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 OK\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code is OK\", function () {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"pm.test (\"Your test name\", function (){\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.value).to.eql(pm.collectionVariables.get(\"userID\"));\r",
+									"    });\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/user/640c3a705617347dac8664f9",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"user",
+								"640c3a705617347dac8664f9"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Post",
+			"item": [
+				{
+					"name": "Get List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 1500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name is OK\", function () {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.collectionVariables.set(\"userId\", jsonData.data[0].owner.id);\r",
+									"pm.collectionVariables.set(\"tag\", jsonData.data[0].tags[0]);\r",
+									"pm.collectionVariables.set(\"postId\", jsonData.data[0].id);\r",
+									"\r",
+									"pm.test(\"chek body data is array\", function () {\r",
+									"    pm.expect(jsonData.data).to.be.an(\"array\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"chek data id[0]\", function () {\r",
+									"    pm.expect(jsonData.data[0].id).to.be.an(\"string\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"chek data[19] id\", function () {\r",
+									"    pm.expect(jsonData.data[19].id).to.be.an(\"string\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"chek data id[20] undefined\", function () {\r",
+									"    pm.expect(jsonData.data[20]).to.be.an(\"undefined\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"chek limit is 20\", function () {\r",
+									"    pm.expect(jsonData.limit).to.eql(20);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"chek page is 0\", function () {\r",
+									"    pm.expect(jsonData.page).to.eql(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"chek page total is number\", function () {\r",
+									"    pm.expect(jsonData.total).to.be.a(\"number\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/post",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get List By User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 2000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name is OK\", function () {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"\r",
+									"pm.test(\"chek body data is array\", function () {\r",
+									"    pm.expect(jsonData.data).to.be.an(\"array\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"chek data id[0]\", function () {\r",
+									"    pm.expect(jsonData.data[0].id).to.be.an(\"string\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"chek page total is number\", function () {\r",
+									"    pm.expect(jsonData.total).to.be.a(\"number\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"chek data id[20] undefined\", function () {\r",
+									"    pm.expect(jsonData.data[20]).to.be.an(\"undefined\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"chek limit is 20\", function () {\r",
+									"    pm.expect(jsonData.limit).to.eql(20);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"chek page is 0\", function () {\r",
+									"    pm.expect(jsonData.page).to.eql(0);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/user/{{userId}}/post",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"user",
+								"{{userId}}",
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get List By Tag",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 2000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name is OK\", function () {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"\r",
+									"pm.test(\"chek body data is array\", function () {\r",
+									"    pm.expect(jsonData.data).to.be.an(\"array\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"chek data id[0]\", function () {\r",
+									"    pm.expect(jsonData.data[0].id).to.be.an(\"string\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"chek page total is number\", function () {\r",
+									"    pm.expect(jsonData.total).to.be.a(\"number\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"chek data id[20] undefined\", function () {\r",
+									"    pm.expect(jsonData.data[20]).to.be.an(\"undefined\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"chek limit is 20\", function () {\r",
+									"    pm.expect(jsonData.limit).to.eql(20);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"chek page is 0\", function () {\r",
+									"    pm.expect(jsonData.page).to.eql(0);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/tag/dog/post",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"tag",
+								"dog",
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Post by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 1500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name is OK\", function () {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"chek id is string \", function () {\r",
+									"    pm.expect(jsonData.id).to.be.an(\"string\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"chek owner is string \", function () {\r",
+									"    pm.expect(jsonData.owner.id).to.be.an(\"string\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/post/{{postId}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"post",
+								"{{postId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 2000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name is OK\", function () {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"\r",
+									"pm.test(\"Chek text\", function () {\r",
+									"    pm.expect(jsonData.text).to.eql(\"dogs\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Chek likes\", function () {\r",
+									"    pm.expect(jsonData.likes).to.eql(43);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check body updatedDate is string\", function () {\r",
+									"    pm.expect(jsonData.updatedDate).to.be.a('string')\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"owner\":\"60d0fe4f5311236168a109ca\",\r\n\"text\":\"dogs\",\r\n\"image\": \"https://img.dummyapi.io/photo-1564694202779-bc908c327862.jpg\",\r\n            \"likes\": 43,\r\n            \"tags\": [\r\n                \"animal\",\r\n                \"dog\",\r\n                \"golden retriever\"\r\n            ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/post/create",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"post",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 1500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name is OK\", function () {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Chek tags\", function () {\r",
+									"    pm.expect(jsonData.text).to.eql(\"dogs\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n\"tags\":\"dogs\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/post/{{postId}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"post",
+								"{{postId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 2000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name is OK\", function () {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/post/{{postId}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"post",
+								"{{postId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "{{app-id}}",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "app-id",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "api-v",
+			"value": "v2",
+			"type": "string"
+		},
+		{
+			"key": "useriD",
+			"value": ""
+		},
+		{
+			"key": "userId",
+			"value": ""
+		},
+		{
+			"key": "tag",
+			"value": ""
+		},
+		{
+			"key": "postId",
+			"value": ""
+		},
+		{
+			"key": "post_id",
+			"value": ""
+		}
+	]
+}
